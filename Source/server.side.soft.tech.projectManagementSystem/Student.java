@@ -3,7 +3,7 @@ public class Student implements Serializable{
 	private long int studentNumber;
 	private String name;
 	private String surname;
-	
+	private float mark;
 	
 	public Student()
 	{
@@ -33,6 +33,14 @@ public class Student implements Serializable{
 	public void setSurname(String surname)
 	{
 		this.surname = surname;
+	}
+	public float getMark()
+	{
+		return this.mark;
+	}
+	public void setMark(float mark)
+	{
+		this.mark = mark;
 	}
 	
 }
