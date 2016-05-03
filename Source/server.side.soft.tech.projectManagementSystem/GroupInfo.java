@@ -23,7 +23,7 @@ public class GroupInfo implements java.io.Serializable{
 		}
 		public void addStudent(Student s)
 		{
-			this.group.add(s);
+			this.group.add(s); 
 		}
 		
 }
