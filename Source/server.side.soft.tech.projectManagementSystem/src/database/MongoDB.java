@@ -1,10 +1,11 @@
 package database;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import util.DbUtil;
@@ -41,7 +42,7 @@ public class MongoDB {
 
   private void init() {
     if (MongoDB.mongo == null) {
-      MongoDB.mongo = new MongoClient("localhost", 8180);
+      MongoDB.mongo = new MongoClient("localhost");
       MongoDB.database = MongoDB.mongo.getDatabase(DbUtil.DB_NAME);
       MongoDB.database.createCollection(DbUtil.USER_COLL);
       MongoDB.database.createCollection(DbUtil.PROJ_COLL);
@@ -54,11 +55,11 @@ public class MongoDB {
     }
   }
 
-  @SuppressWarnings({"unchecked", "rawtypes"})
-  public FindIterable read(final Object tableName, final Object filter) {
+  @SuppressWarnings("rawtypes")
+  public MongoCursor read(final Object tableName, final Object filter) {
     assert filter != null;
     this.connectCollection((String) tableName);
 
-    return this.collection.find((Class) filter);
+    return this.collection.find((Bson) filter).iterator();
   }
 }

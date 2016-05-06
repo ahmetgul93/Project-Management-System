@@ -1,13 +1,18 @@
 package model;
 
+import java.io.IOException;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.bson.Document;
 
-import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCursor;
 
 import database.MongoDB;
 import util.DbUtil;
+import util.PageUtil;
 
 @ManagedBean(name = "user")
 public class User {
@@ -32,11 +37,24 @@ public class User {
 
   public void login() {
     final MongoDB db = new MongoDB();
-
-    final Document querydoc = new Document("email", "sunucuyazilim12@gmail.com");
-    querydoc.append("password", "123456A!");
-    final FindIterable read = db.read(DbUtil.USER_COLL, querydoc);
-    System.out.println("xytrtr");
+    final Document querydoc = new Document("email", this.email);
+    querydoc.append("password", this.password);
+    @SuppressWarnings("rawtypes")
+    final MongoCursor iterator = db.read(DbUtil.USER_COLL, querydoc);
+    // while (iterator.hasNext()) {
+    // final Document doc = (Document) iterator.next();
+    // System.out.println(doc.toJson());
+    // }
+    if (iterator.hasNext()) {
+      try {
+        FacesContext.getCurrentInstance().getExternalContext().redirect(PageUtil.SECOND_PAGE);
+      } catch (final IOException e) {
+        e.printStackTrace();
+      }
+    } else {
+      FacesContext.getCurrentInstance().addMessage("loginForm:loginButton",
+          new FacesMessage("Your email and/or password is incorrect. Please try again"));
+    }
   }
 
   public void setEmail(final String email) {

@@ -32,7 +32,7 @@
 
 	<div class="container">
 
-		<h:form class="form-login">
+		<h:form class="form-login" id="loginForm">
 			<h2 class="form-login-heading">Please login</h2>
 			<label for="inputEmail" class="sr-only">Email address</label>
 			<h:inputText a:type="email" id="inputEmail" class="form-control"
@@ -48,7 +48,8 @@
 				</label>
 			</div>
 			<h:commandButton class="btn btn-lg btn-primary btn-block"
-				type="submit" value="Login" action="#{user.login}"></h:commandButton>
+				id="loginButton" type="submit" value="Login" action="#{user.login}"></h:commandButton>
+			<h:message for="loginButton" style="color:red"></h:message>
 		</h:form>
 
 	</div>
