@@ -53,7 +53,7 @@ public class User {
       }
     } else {
       FacesContext.getCurrentInstance().addMessage("loginForm:loginButton",
-          new FacesMessage("Your email and/or password is incorrect. Please try again"));
+          new FacesMessage(PageUtil.LOGIN_ERROR));
     }
   }
 
