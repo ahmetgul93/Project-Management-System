@@ -2,28 +2,29 @@ package model;
 
 import java.util.ArrayList;
 
-public class GroupInfo implements java.io.Serializable {
+import javax.faces.bean.ManagedBean;
 
-  private static final long serialVersionUID = 4811109125723501690L;
+@ManagedBean
+public class GroupInfo {
 
-  private final ArrayList<Student> group;
+  private final ArrayList<Student> students;
 
   private int groupNo;
 
   public GroupInfo() {
-    this.group = new ArrayList<Student>();
+    this.students = new ArrayList<Student>();
   }
 
   public void addStudent(Student s) {
-    this.group.add(s);
-  }
-
-  public ArrayList<Student> getGroup() {
-    return this.group;
+    this.students.add(s);
   }
 
   public int getGroupNo() {
     return this.groupNo;
+  }
+
+  public ArrayList<Student> getStudents() {
+    return this.students;
   }
 
   public void setGroupNo(int groupNo) {

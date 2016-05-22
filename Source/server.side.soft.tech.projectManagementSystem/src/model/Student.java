@@ -1,10 +1,6 @@
 package model;
 
-import java.io.Serializable;
-
-public class Student implements Serializable {
-
-  private static final long serialVersionUID = -7123463976331110419L;
+public class Student {
 
   private long studentNumber;
 
@@ -12,12 +8,10 @@ public class Student implements Serializable {
 
   private String surname;
 
-  private float mark;
+  private float grade;
 
-  public Student() {}
-
-  public float getMark() {
-    return this.mark;
+  public float getGrade() {
+    return this.grade;
   }
 
   public String getName() {
@@ -32,8 +26,8 @@ public class Student implements Serializable {
     return this.surname;
   }
 
-  public void setMark(float mark) {
-    this.mark = mark;
+  public void setGrade(float grade) {
+    this.grade = grade;
   }
 
   public void setName(String name) {

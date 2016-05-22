@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Second Page</title>
-</head>
-<body>
-	<p>Welcome to second page</p>
-</body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Second Page</title>
+</h:head>
+<h:body>
+	<p:dataTable>
+		<p:columnGroup type="header">
+			<p:row>
+				<p:column headerText="Group No" />
+				<p:column headerText="Student Number" />
+				<p:column headerText="Student Name" />
+				<p:column headerText="Student Surname" />
+				<p:column headerText="Grade" />
+			</p:row>
+		</p:columnGroup>
+
+		<p:row>
+			<p:column rowspan="2">
+				<h:outputLabel>Group</h:outputLabel>
+			</p:column>
+		</p:row>
+		<p:row>
+			<p:column>
+				<h:outputLabel>Stu No</h:outputLabel>
+			</p:column>
+			<p:column>
+				<h:outputLabel>Stu Name</h:outputLabel>
+			</p:column>
+			<p:column>
+				<h:outputLabel>Stu Surname</h:outputLabel>
+			</p:column>
+			<p:column>
+				<h:outputLabel>Group</h:outputLabel>
+			</p:column>
+		</p:row>
+	</p:dataTable>
+</h:body>
 </html>

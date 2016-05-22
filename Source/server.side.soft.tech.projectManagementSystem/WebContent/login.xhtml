@@ -1,61 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Login</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-		integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-		crossorigin="anonymous"></link>
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
 
 	<link href="login.css" rel="stylesheet" />
 
 	<!-- Optional theme -->
 	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-		integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
-		crossorigin="anonymous"></link>
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"></link>
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-		integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-		crossorigin="anonymous"></script>
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </h:head>
 
 <h:body>
 
 	<div class="container">
 
-		<h:form class="form-login" id="loginForm">
+		<h:form id="loginForm">
+			<f:passThroughAttribute name="class" value="form-login"></f:passThroughAttribute>
+
 			<h2 class="form-login-heading">Please login</h2>
-			<label for="inputEmail" class="sr-only">Email address</label>
-			<h:inputText a:type="email" id="inputEmail" class="form-control"
-				a:placeholder="Email address" a:required="true" a:autofocus="true"
-				value="#{user.email}"></h:inputText>
-			<label for="inputPassword" class="sr-only">Password</label>
-			<h:inputSecret a:type="password" id="inputPassword"
-				class="form-control" a:placeholder="Password" a:required="true"
-				value="#{user.password}"></h:inputSecret>
+
+			<h:outputLabel for="inputEmail">Email address
+				<f:passThroughAttribute name="class" value="sr-only"></f:passThroughAttribute>
+			</h:outputLabel>
+
+			<p:inputText id="inputEmail" value="#{user.email}" type="email"
+				placeholder="Email address">
+				<f:passThroughAttribute name="class" value="form-control"></f:passThroughAttribute>
+				<f:passThroughAttribute name="required" value="true"></f:passThroughAttribute>
+				<f:passThroughAttribute name="autofocus" value="true"></f:passThroughAttribute>
+				<!-- 				<f:validator validatorId="login.emailValidator"></f:validator> -->
+			</p:inputText>
+			<!-- 			<p:message for="inputEmail" display="tooltip"></p:message> -->
+			<!-- 			<h:outputText value="#{user.email}" /> -->
+
+			<h:outputLabel for="inputPassword">Password
+				<f:passThroughAttribute name="class" value="sr-only"></f:passThroughAttribute>
+			</h:outputLabel>
+
+			<p:password id="inputPassword" value="#{user.password}"
+				placeholder="Password">
+				<f:passThroughAttribute name="class" value="form-control"></f:passThroughAttribute>
+				<f:passThroughAttribute name="type" value="password"></f:passThroughAttribute>
+				<f:passThroughAttribute name="required" value="true"></f:passThroughAttribute>
+			</p:password>
+
 			<div class="checkbox">
 				<label> <h:selectBooleanCheckbox value="#{user.rememberMe}"></h:selectBooleanCheckbox>
 					Remember me
 				</label>
 			</div>
-			<h:commandButton class="btn btn-lg btn-primary btn-block"
-				id="loginButton" type="submit" value="Login" action="#{user.login}"></h:commandButton>
-			<h:message for="loginButton" style="color:red"></h:message>
+			<p:commandButton id="loginButton" type="submit" value="Login"
+				ajax="false" action="#{user.login}">
+				<f:passThroughAttribute name="class"
+					value="btn btn-lg btn-primary btn-block"></f:passThroughAttribute>
+			</p:commandButton>
+			<!-- 			<h:message for="loginButton" style="color:red"></h:message> -->
 		</h:form>
 
 	</div>
 	<!-- /container -->
-
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </h:body>
 </html>
