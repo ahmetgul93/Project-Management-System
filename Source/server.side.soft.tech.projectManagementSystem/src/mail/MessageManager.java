@@ -4,13 +4,13 @@ import java.util.List;
 
 public class MessageManager {
 
-  private static List<StringBuilder> messages;
+  private static List<String> messages;
 
-  public static void addMessage(StringBuilder message) {
+  public static void addMessage(String message) {
     messages.add(message);
   }
 
-  public static List<StringBuilder> getMessages() {
+  public static List<String> getMessages() {
     return messages;
   }
 

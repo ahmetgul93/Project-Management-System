@@ -70,7 +70,7 @@ public class MailListener implements Runnable {
           // System.out.println(builder.toString());
         }
 
-        MessageManager.addMessage(builder);
+        MessageManager.addMessage(builder.toString());
       }
 
       // close the store and folder objects
@@ -136,7 +136,7 @@ public class MailListener implements Runnable {
           // System.out.println(builder.toString());
         }
 
-        MessageManager.addMessage(builder);
+        MessageManager.addMessage(builder.toString());
       }
 
       // close the store and folder objects
