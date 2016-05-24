@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.data.annotation.Id;
 
+import mail.MailListener;
 import util.PageUtil;
 // import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -39,6 +40,9 @@ public class User {
   }
 
   public void login() {
+    // we'll trigger a message listener thread at here.
+    final MailListener listener = new MailListener();
+    listener.run();
     try {
       FacesContext.getCurrentInstance().getExternalContext().redirect(PageUtil.SECOND_PAGE);
     } catch (final IOException e) {
