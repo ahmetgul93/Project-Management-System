@@ -1,30 +1,23 @@
 package mail;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.NoSuchProviderException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Store;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.search.FlagTerm;
 
 import util.DbUtil;
 
-/**
- * @author anıl öztürk
- * @author ahmet gül
- * @author asım zorlu
- *
- *         This class aims to listen given gmail account and take received mails from there.
- */
 public class MailListener implements Runnable {
 
-  private static final String host = "pop.gmail.com";
-
-  private static final String port = "995";
+  private static final String host = "imap.gmail.com";
 
   public static void main(String[] args) {
     try {
@@ -35,7 +28,7 @@ public class MailListener implements Runnable {
       final Session emailSession = Session.getDefaultInstance(properties);
 
       // create the POP3 store object and connect with the pop server
-      final Store store = emailSession.getStore();
+      final Store store = emailSession.getStore("imaps");
 
       store.connect(host, DbUtil.USER, DbUtil.PASS);
 
@@ -55,21 +48,40 @@ public class MailListener implements Runnable {
         System.out.println("Email Number " + (i + 1));
         System.out.println("Subject: " + message.getSubject());
         System.out.println("From: " + message.getFrom()[0]);
-        System.out.println("Text: " + message.getContent().toString());
-        // message.setFlag(Flag.SEEN, true); This code signs the message as seen
+
+        final StringBuilder builder = new StringBuilder();
+        if (message.getContentType().contains("TEXT/PLAIN")) {
+          final Object content = message.getContent();
+          if (content != null) {
+            builder.append(content);
+            // System.out.println(content.toString());
+          }
+        } else if (message.getContentType().contains("multipart")) {
+          final Multipart mp = (Multipart) message.getContent();
+          final int numParts = mp.getCount();
+          for (int count = 0; count < numParts; count++) {
+            final MimeBodyPart part = (MimeBodyPart) mp.getBodyPart(count);
+
+            final String content = part.getContent().toString();
+            if (part.getContentType().contains("TEXT/PLAIN")) {
+              builder.append(content);
+            }
+          }
+          // System.out.println(builder.toString());
+        }
+
+        MessageManager.addMessage(builder);
       }
 
       // close the store and folder objects
       emailFolder.close(false);
       store.close();
 
-    } catch (final NoSuchProviderException e) {
-      e.printStackTrace();
-    } catch (final MessagingException e) {
-      e.printStackTrace();
-    } catch (final Exception e) {
+    } catch (final MessagingException | IOException e) {
       e.printStackTrace();
     }
+
+    MessageParser.parse();
   }
 
   @Override
@@ -82,7 +94,7 @@ public class MailListener implements Runnable {
       final Session emailSession = Session.getDefaultInstance(properties);
 
       // create the POP3 store object and connect with the pop server
-      final Store store = emailSession.getStore();
+      final Store store = emailSession.getStore("imaps");
 
       store.connect(host, DbUtil.USER, DbUtil.PASS);
 
@@ -102,19 +114,39 @@ public class MailListener implements Runnable {
         System.out.println("Email Number " + (i + 1));
         System.out.println("Subject: " + message.getSubject());
         System.out.println("From: " + message.getFrom()[0]);
-        System.out.println("Text: " + message.getContent().toString());
+
+        final StringBuilder builder = new StringBuilder();
+        if (message.getContentType().contains("TEXT/PLAIN")) {
+          final Object content = message.getContent();
+          if (content != null) {
+            builder.append(content);
+            // System.out.println(content.toString());
+          }
+        } else if (message.getContentType().contains("multipart")) {
+          final Multipart mp = (Multipart) message.getContent();
+          final int numParts = mp.getCount();
+          for (int count = 0; count < numParts; count++) {
+            final MimeBodyPart part = (MimeBodyPart) mp.getBodyPart(count);
+
+            final String content = part.getContent().toString();
+            if (part.getContentType().contains("TEXT/PLAIN")) {
+              builder.append(content);
+            }
+          }
+          // System.out.println(builder.toString());
+        }
+
+        MessageManager.addMessage(builder);
       }
 
       // close the store and folder objects
       emailFolder.close(false);
       store.close();
 
-    } catch (final NoSuchProviderException e) {
-      e.printStackTrace();
-    } catch (final MessagingException e) {
-      e.printStackTrace();
-    } catch (final Exception e) {
+    } catch (final MessagingException | IOException e) {
       e.printStackTrace();
     }
+
+    MessageParser.parse();
   }
 }
