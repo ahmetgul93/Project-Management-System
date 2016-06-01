@@ -1,4 +1,4 @@
-package database;
+package base.database;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -8,7 +8,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
-import util.DbUtil;
+import base.util.DbUtil;
 
 public class MongoDB {
 
@@ -47,8 +47,8 @@ public class MongoDB {
       MongoDB.database.createCollection(DbUtil.USER_COLL);
       MongoDB.database.createCollection(DbUtil.PROJ_COLL);
 
-      final Document obj = new Document("email", "sunucuyazilim12@gmail.com");
-      obj.append("password", "123456A!");
+      final Document obj = new Document("email", DbUtil.USER);
+      obj.append("password", DbUtil.PASS);
 
       MongoDB.database.getCollection(DbUtil.USER_COLL).insertOne(obj);
 

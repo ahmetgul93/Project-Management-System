@@ -1,4 +1,4 @@
-package model;
+package base.data;
 
 public class Student {
 

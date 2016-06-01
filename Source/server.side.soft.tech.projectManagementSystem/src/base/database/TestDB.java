@@ -1,4 +1,4 @@
-package database;
+package base.database;
 
 import org.bson.Document;
 
@@ -7,7 +7,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
-import util.DbUtil;
+import base.util.DbUtil;
 
 public class TestDB implements DBConnections<MongoCursor<Document>, Document> {
 

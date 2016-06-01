@@ -1,6 +1,7 @@
-package mail;
+package base.mail;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Flags;
@@ -13,13 +14,14 @@ import javax.mail.Store;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.search.FlagTerm;
 
-import util.DbUtil;
+import base.data.GroupInfo;
+import base.util.DbUtil;
 
 public class MailListener implements Runnable {
 
   private static final String host = "imap.gmail.com";
 
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     try {
       // create properties field
       final Properties properties = new Properties();
@@ -81,7 +83,10 @@ public class MailListener implements Runnable {
       e.printStackTrace();
     }
 
-    MessageParser.parse();
+    MessageManager.addMessage(
+        "Merhaba Hocam,\nSYT dersinin 2.proje grup üyeleri aşağıdaki gibidir:\n5110000002-Ahmet Gül\n5110000008-Asım Zorlu\n5110000056-Ümit Anıl Öztürk");
+
+    final List<GroupInfo> newGroups = MessageParser.parse();
   }
 
   @Override

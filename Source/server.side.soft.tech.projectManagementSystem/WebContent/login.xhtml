@@ -37,21 +37,18 @@
 				<f:passThroughAttribute name="class" value="sr-only"></f:passThroughAttribute>
 			</h:outputLabel>
 
-			<p:inputText id="inputEmail" value="#{user.email}" type="email"
+			<p:inputText id="inputEmail" value="#{userBean.user.email}" type="email"
 				placeholder="Email address">
 				<f:passThroughAttribute name="class" value="form-control"></f:passThroughAttribute>
 				<f:passThroughAttribute name="required" value="true"></f:passThroughAttribute>
 				<f:passThroughAttribute name="autofocus" value="true"></f:passThroughAttribute>
-				<!-- 				<f:validator validatorId="login.emailValidator"></f:validator> -->
 			</p:inputText>
-			<!-- 			<p:message for="inputEmail" display="tooltip"></p:message> -->
-			<!-- 			<h:outputText value="#{user.email}" /> -->
 
 			<h:outputLabel for="inputPassword">Password
 				<f:passThroughAttribute name="class" value="sr-only"></f:passThroughAttribute>
 			</h:outputLabel>
 
-			<p:password id="inputPassword" value="#{user.password}"
+			<p:password id="inputPassword" value="#{userBean.user.password}"
 				placeholder="Password">
 				<f:passThroughAttribute name="class" value="form-control"></f:passThroughAttribute>
 				<f:passThroughAttribute name="type" value="password"></f:passThroughAttribute>
@@ -59,16 +56,16 @@
 			</p:password>
 
 			<div class="checkbox">
-				<label> <h:selectBooleanCheckbox value="#{user.rememberMe}"></h:selectBooleanCheckbox>
+				<label> <h:selectBooleanCheckbox value="#{userBean.user.rememberMe}"></h:selectBooleanCheckbox>
 					Remember me
 				</label>
 			</div>
 			<p:commandButton id="loginButton" type="submit" value="Login"
-				ajax="false" action="#{user.login}">
+				ajax="false" action="#{userBean.login}">
 				<f:passThroughAttribute name="class"
 					value="btn btn-lg btn-primary btn-block"></f:passThroughAttribute>
 			</p:commandButton>
-			<!-- 			<h:message for="loginButton" style="color:red"></h:message> -->
+			<h:message for="loginButton" style="color:red"></h:message>
 		</h:form>
 
 	</div>

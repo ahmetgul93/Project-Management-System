@@ -1,4 +1,4 @@
-package database;
+package base.database;
 
 public interface DBConnections<T, U> {
 
