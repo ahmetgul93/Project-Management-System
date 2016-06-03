@@ -1,5 +1,8 @@
 package base.data;
 
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean
 public class Student {
 
   private long studentNumber;
@@ -26,19 +29,19 @@ public class Student {
     return this.surname;
   }
 
-  public void setGrade(float grade) {
+  public void setGrade(final float grade) {
     this.grade = grade;
   }
 
-  public void setName(String name) {
+  public void setName(final String name) {
     this.name = name;
   }
 
-  public void setstudentNumber(long studentNumber) {
+  public void setstudentNumber(final long studentNumber) {
     this.studentNumber = studentNumber;
   }
 
-  public void setSurname(String surname) {
+  public void setSurname(final String surname) {
     this.surname = surname;
   }
 }

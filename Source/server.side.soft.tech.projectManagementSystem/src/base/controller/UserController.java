@@ -17,6 +17,6 @@ public class UserController {
   }
 
   public void insertUser(final User user) {
-    this.repository.insertUser(user);
+    this.repository.save(user);
   }
 }

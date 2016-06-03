@@ -21,9 +21,4 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 
     return this.mongoTemplate.findOne(query, User.class, DbUtil.USER_COLL);
   }
-
-  @Override
-  public void insertUser(final User user) {
-    this.mongoTemplate.insert(user, DbUtil.USER_COLL);
-  }
 }

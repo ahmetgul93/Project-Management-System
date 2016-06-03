@@ -36,7 +36,7 @@ public class UserBean {
   public void init() {
     this.user = new User();
 
-    System.out.println("It is in");
+    // System.out.println("It is in");
     final User admin = new User();
     admin.setEmail(DbUtil.USER);
     admin.setPassword(DbUtil.PASS);
@@ -51,7 +51,7 @@ public class UserBean {
           new FacesMessage(PageUtil.LOGIN_ERROR));
     } else {
 
-      // we start to listen mail at here every 20 seconds it will run.
+      // we start to listen mail at here, every 20 seconds it will run.
       final ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
       exec.scheduleAtFixedRate(new MailListener(), 0, 20, TimeUnit.SECONDS);
 

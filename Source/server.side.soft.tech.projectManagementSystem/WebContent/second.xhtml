@@ -10,36 +10,70 @@
 	<title>Second Page</title>
 </h:head>
 <h:body>
-	<p:dataTable>
-		<p:columnGroup type="header">
-			<p:row>
-				<p:column headerText="Group No" />
-				<p:column headerText="Student Number" />
-				<p:column headerText="Student Name" />
-				<p:column headerText="Student Surname" />
-				<p:column headerText="Grade" />
-			</p:row>
-		</p:columnGroup>
+	<p:dataTable value="#{groupBean.groups}" var="group">
 
-		<p:row>
-			<p:column rowspan="2">
-				<h:outputLabel>Group</h:outputLabel>
-			</p:column>
-		</p:row>
-		<p:row>
-			<p:column>
-				<h:outputLabel>Stu No</h:outputLabel>
-			</p:column>
-			<p:column>
-				<h:outputLabel>Stu Name</h:outputLabel>
-			</p:column>
-			<p:column>
-				<h:outputLabel>Stu Surname</h:outputLabel>
-			</p:column>
-			<p:column>
-				<h:outputLabel>Group</h:outputLabel>
-			</p:column>
-		</p:row>
+		<p:column headerText="Group No">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{group.groupNo}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{group.groupNo}" style="width:100%" />
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+		<p:column>
+		
+			<p:dataTable value="#{gruop.students}" var="student">
+
+				<p:column headerText="Student Number">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{student.studentNumber}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{student.studentNumber}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Student Name">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{student.name}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{student.name}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Student Surname">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{student.surname}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{student.surname}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="Grade">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{student.grade}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{student.grade}" style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+			</p:dataTable>
+			
+		</p:column>
+		
 	</p:dataTable>
 </h:body>
 </html>

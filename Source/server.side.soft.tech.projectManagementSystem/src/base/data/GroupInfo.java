@@ -4,16 +4,20 @@ import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 
+import org.springframework.data.annotation.Id;
+
 @ManagedBean
 public class GroupInfo {
 
   private static int groupNo = 0;
 
+  @Id
+  private String id;
+
   private final ArrayList<Student> students;
 
   public GroupInfo() {
     this.students = new ArrayList<Student>();
-    groupNo++;
   }
 
   public void addStudent(final Student s) {
@@ -24,11 +28,19 @@ public class GroupInfo {
     return GroupInfo.groupNo;
   }
 
+  public String getId() {
+    return this.id;
+  }
+
   public ArrayList<Student> getStudents() {
     return this.students;
   }
 
-  public void setGroupNo(final int groupNo) {
-    GroupInfo.groupNo = groupNo;
+  public void setGroupNo() {
+    groupNo++;
+  }
+
+  public void setId(final String id) {
+    this.id = id;
   }
 }
