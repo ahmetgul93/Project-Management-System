@@ -8,6 +8,13 @@ import org.springframework.data.mongodb.core.query.Query;
 import base.data.User;
 import base.util.DbUtil;
 
+/**
+ * This implementation uses MongoTemplate to achieve the database operations.
+ *
+ * @author anıl öztürk
+ * @author ahmet gül
+ * @author asım zorlu
+ */
 public class UserRepositoryImpl implements UserRepositoryCustom {
 
   @Autowired

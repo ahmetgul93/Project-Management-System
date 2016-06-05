@@ -1,9 +1,6 @@
 package base.beans;
 
 import java.io.IOException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -15,10 +12,17 @@ import org.springframework.stereotype.Component;
 
 import base.controller.UserController;
 import base.data.User;
-import base.mail.MailListener;
 import base.util.DbUtil;
 import base.util.PageUtil;
 
+/**
+ * This class is responsible for holding the given input from login.xhtml view and transmit those
+ * data to controller.
+ *
+ * @author anıl öztürk
+ * @author ahmet gül
+ * @author asım zorlu
+ */
 @Component
 @SessionScoped
 public class UserBean {
@@ -32,17 +36,25 @@ public class UserBean {
     return this.user;
   }
 
+  /**
+   * This method will be call just once and initialize the User database with admin.
+   *
+   */
   @PostConstruct
   public void init() {
     this.user = new User();
 
-    // System.out.println("It is in");
     final User admin = new User();
     admin.setEmail(DbUtil.USER);
     admin.setPassword(DbUtil.PASS);
     this.controller.insertUser(admin);
   }
 
+  /**
+   * This method is responsible for check the user which return from database related to given
+   * information and if succeed redirect to project page.
+   *
+   */
   public void login() {
     final User returnedUser =
         this.controller.getUser(this.user.getEmail(), this.user.getPassword());
@@ -50,13 +62,8 @@ public class UserBean {
       FacesContext.getCurrentInstance().addMessage("loginForm:loginButton",
           new FacesMessage(PageUtil.LOGIN_ERROR));
     } else {
-
-      // we start to listen mail at here, every 20 seconds it will run.
-      final ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
-      exec.scheduleAtFixedRate(new MailListener(), 0, 20, TimeUnit.SECONDS);
-
       try {
-        FacesContext.getCurrentInstance().getExternalContext().redirect(PageUtil.SECOND_PAGE);
+        FacesContext.getCurrentInstance().getExternalContext().redirect(PageUtil.PROJECT_PAGE);
       } catch (final IOException e) {
         e.printStackTrace();
       }

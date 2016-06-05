@@ -6,6 +6,13 @@ import org.springframework.stereotype.Service;
 import base.data.User;
 import base.database.UserRepository;
 
+/**
+ * This class is responsible for communication with user repository.
+ *
+ * @author anıl öztürk
+ * @author ahmet gül
+ * @author asım zorlu
+ */
 @Service
 public class UserController {
 

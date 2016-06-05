@@ -1,13 +1,14 @@
 package base.data;
 
-import javax.faces.bean.ManagedBean;
-
-import org.springframework.data.annotation.Id;
-
-@ManagedBean
+/**
+ * Defines User data structure.
+ *
+ * @author anıl öztürk
+ * @author ahmet gül
+ * @author asım zorlu
+ */
 public class User {
 
-  @Id
   private String id;
 
   private String email;
@@ -20,6 +21,10 @@ public class User {
     return this.email;
   }
 
+  public String getId() {
+    return this.id;
+  }
+
   public String getPassword() {
     return this.password;
   }
@@ -30,6 +35,10 @@ public class User {
 
   public void setEmail(final String email) {
     this.email = email;
+  }
+
+  public void setId(final String id) {
+    this.id = id;
   }
 
   public void setPassword(final String password) {
